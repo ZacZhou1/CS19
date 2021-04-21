@@ -12,7 +12,7 @@ public class Regression {
 	public ArrayList<Double> cubicSpline(double[] inputDataX, double[] inputDataY){
 		CubicSplineInterpolation1D cubic = new CubicSplineInterpolation1D(inputDataX, inputDataY);
 		ArrayList<Double> arrayList = new ArrayList<Double>();
-		for (double i = 0; i < inputDataX[inputDataX.length - 1 ] + 0.1; i = i+0.1) {
+		for (double i = 0; i < inputDataX[inputDataX.length - 1 ] + 1; i = i+0.1) {
 			Double num = cubic.interpolate(i);
 			Double numDouble  = doubleScale.doubleScale(num);		
 			arrayList.add(numDouble);
@@ -24,7 +24,7 @@ public class Regression {
 	public ArrayList<Double> linearInterpolation(double[] inputDataX, double[] inputDataY){
 		LinearInterpolation linear = new LinearInterpolation(inputDataX, inputDataY);
 		ArrayList<Double> arrayList = new ArrayList<Double>();
-		for (double i = 0; i < inputDataX[inputDataX.length - 1 ] + 0.1; i = i+0.1) {
+		for (double i = 0; i < inputDataX[inputDataX.length - 1 ] + 1; i = i+0.1) {
 			Double num = linear.interpolate(i);
 			Double numDouble  = doubleScale.doubleScale(num);		
 			arrayList.add(numDouble);
@@ -35,7 +35,7 @@ public class Regression {
 	public ArrayList<Double> shepardInterpolation(double[] inputDataX, double[] inputDataY){
 		ShepardInterpolation1D shepard = new ShepardInterpolation1D(inputDataX, inputDataY,3);
 		ArrayList<Double> arrayList = new ArrayList<Double>();
-		for (double i = 0; i < inputDataX[inputDataX.length - 1 ] + 0.1; i = i+0.1) {
+		for (double i = 0; i < inputDataX[inputDataX.length - 1 ] + 1; i = i+0.1) {
 			Double num = shepard.interpolate(i);
 			Double numDouble  = doubleScale.doubleScale(num);		
 			arrayList.add(numDouble);
