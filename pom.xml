@@ -55,6 +55,42 @@
 			<version>2.6.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.haifengl</groupId>
+			<artifactId>smile-core</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+
+<dependency>
+    <groupId>org.bytedeco</groupId>
+    <artifactId>javacpp</artifactId>
+    <version>1.5.4</version>
+</dependency>
+<dependency>
+    <groupId>org.bytedeco</groupId>
+    <artifactId>openblas</artifactId>
+    <version>0.3.10-1.5.4</version>
+</dependency>
+
+<dependency>
+    <groupId>org.bytedeco</groupId>
+    <artifactId>openblas-platform</artifactId>
+    <version>0.3.10-1.5.4</version>
+</dependency>
+<dependency>
+    <groupId>org.bytedeco</groupId>
+    <artifactId>arpack-ng</artifactId>
+    <version>3.7.0-1.5.4</version>
+</dependency>
+
+<dependency>
+    <groupId>org.bytedeco</groupId>
+    <artifactId>arpack-ng-platform</artifactId>
+    <version>3.7.0-1.5.4</version>
+</dependency>
+
+
 
 		<!-- Logging -->
 		<dependency>

@@ -1,8 +1,7 @@
-package usyd.elec5703.cs19;
+package usyd.elec5703.cs19.web;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+
+import usyd.elec5703.cs19.algorithm.CurveFit;
+import usyd.elec5703.cs19.algorithm.Regression;
+import usyd.elec5703.cs19.domain.DocumentData;
+import usyd.elec5703.cs19.utils.Tools;
 
 @Controller("home")
 public class HomepageController {

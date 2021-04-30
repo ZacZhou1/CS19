@@ -1,4 +1,4 @@
-package usyd.elec5703.cs19;
+package usyd.elec5703.cs19.domain;
 
 public class DocumentData {
 	private String idString;

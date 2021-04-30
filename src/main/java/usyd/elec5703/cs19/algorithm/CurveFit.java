@@ -1,7 +1,9 @@
-package usyd.elec5703.cs19;
+package usyd.elec5703.cs19.algorithm;
 
 import org.apache.commons.math3.fitting.PolynomialCurveFitter;
 import org.apache.commons.math3.fitting.WeightedObservedPoints;
+
+import usyd.elec5703.cs19.utils.DoubleScale;
 
 public class CurveFit {
 	

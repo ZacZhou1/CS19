@@ -13,7 +13,6 @@
 <body>
 	<h1 class="display-4" align="center">Psychometric Mapping Tool</h1>
 
-
 	<table class="table">
 		<thead>
 			<tr>

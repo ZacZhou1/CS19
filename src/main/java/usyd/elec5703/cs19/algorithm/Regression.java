@@ -1,10 +1,11 @@
-package usyd.elec5703.cs19;
+package usyd.elec5703.cs19.algorithm;
 
 import java.util.ArrayList;
 
 import smile.interpolation.CubicSplineInterpolation1D;
 import smile.interpolation.LinearInterpolation;
 import smile.interpolation.ShepardInterpolation1D;
+import usyd.elec5703.cs19.utils.DoubleScale;
 
 public class Regression {
 	DoubleScale doubleScale = new DoubleScale();
