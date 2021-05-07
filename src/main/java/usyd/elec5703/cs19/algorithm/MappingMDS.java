@@ -10,6 +10,9 @@ public class MappingMDS {
 	
 	
 	public double[] MDSmds(double[][] arr) {
+		if (arr == null) {
+			return null;
+		}
 		double[][] proxi = arrayToProximity(arr);
 		int col =  proxi.length;
 		double[][] coordinates  =MDS.of(proxi, 1).coordinates;
@@ -21,6 +24,9 @@ public class MappingMDS {
 	}
 	
 	public double[] MDSisomds(double[][] arr) {
+		if (arr == null) {
+			return null;
+		}
 		double[][] proxi = arrayToProximity(arr);
 		int col =  proxi.length;
 		double[][] coordinates  =IsotonicMDS.of(proxi, 1).coordinates;
@@ -33,6 +39,9 @@ public class MappingMDS {
 	
 	
 	public double[] MDSsammon(double[][] arr) {
+		if (arr == null) {
+			return null;
+		}
 		double[][] proxi = arrayToProximity(arr);
 		int col =  proxi.length;
 		double[][] coordinates  =SammonMapping.of(proxi, 1).coordinates;
@@ -61,7 +70,6 @@ public class MappingMDS {
 			}
 		}
 		return proximity;
-		
 	}
 
 }

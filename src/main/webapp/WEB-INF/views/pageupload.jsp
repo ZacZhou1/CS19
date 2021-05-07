@@ -9,10 +9,26 @@
 <link
 	href="${pageContext.request.contextPath }/asset/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
+	
+	        <!-- third party css -->
+        <link href="${pageContext.request.contextPath }/asset/assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/asset/assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/asset/assets/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/asset/assets/libs/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+
+        <!-- App css -->
+        <link href="${pageContext.request.contextPath }/asset/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/asset/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/asset/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+
+
+	
 </head>
 <style type="text/css">
 table {
-	border: 1px solid #ccc;
+	border: 2px solid #ccc;
 }
 
 table th {
@@ -31,7 +47,7 @@ table th, table td {
 	<h1 class="display-4" align="center">Psychometric Mapping Tool</h1>
 	<ul class="nav">
 		<li class="nav-item"><a class="nav-link active"
-			href="/cs19/mapping/upload">upload</a></li>
+			href="/cs19/mapping/upload">Upload</a></li>
 		<li class="nav-item"><a class="nav-link"
 			href="/cs19/mapping/data">Projection</a></li>
 	</ul>
@@ -59,7 +75,7 @@ table th, table td {
 						<option value="mds">Classical Multi-dimensional Scaling</option>
 						<option value="isomds">Kruskal's Nonmetric MDS</option>
 						<option value="sammon">Sammon's Mapping</option>
-						<option value="pca">Principal component analysis</option>
+						<option value="pca">Principal Component Analysis</option>
 					</select>
 				</div>
 				<br> <br> <br>
@@ -81,6 +97,9 @@ table th, table td {
 	src="${pageContext.request.contextPath }/asset/js/bootstrap.bundle.min.js"></script>
 <script
 	src="${pageContext.request.contextPath }/asset/js/bootstrap.min.js"></script>
+	
+
+	
 <script type="text/javascript">
 	$(function() {
 		$("#fileUpload").bind("change", function() {

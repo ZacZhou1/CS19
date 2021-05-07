@@ -8,6 +8,9 @@ public class MappingProjection {
 	Tools tools = new Tools();
 	
 	public double[] projectionPCA(double[][] arr) {
+		if (arr == null) {
+			return null;
+		}
 		double[][] reverse = reverseArr(arr);
 		PCA pca = PCA.fit(reverse);
 		pca.setProjection(1);

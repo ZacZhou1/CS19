@@ -46,11 +46,7 @@ public class MappingController {
 		try {
 
 			MongoClient mongoClient = new MongoClient("localhost", 27017);
-
-			// 连接到数据库
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
-			System.out.println("Connect to database successfully");
-
 			MongoCollection<Document> collection = mongoDatabase.getCollection("Mapping");
 			FindIterable<Document> findIterable = collection.find();
 			MongoCursor<Document> mongoCursor = findIterable.iterator();
@@ -60,11 +56,9 @@ public class MappingController {
 				String psychometricSpace = document.get("psychometricSpace").toString();
 				String numericSpace = document.get("numberSpace").toString();
 				String algorithm = document.get("algorithm").toString();
-				Data data = new Data(idString, psychometricSpace, numericSpace,algorithm);
-				
+				Data data = new Data(idString, psychometricSpace, numericSpace,algorithm);				
 				list.add(data);
 
-				System.out.println(idString);
 			}
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -96,7 +90,15 @@ public class MappingController {
 			}
 		}
 		
-
+		double sumA = 0;
+		double sumB = 0;
+		for (int i = 0; i < rows.length-1; i++) {
+			sumA += arr[i][0];
+			sumB += arr[i][cols.length-2];
+		}
+		
+		double a= sumA/(rows.length-1);
+		double b= sumB/(rows.length-1);
 		
 //		for (double[] ds : arr) {
 //			System.out.println(Arrays.toString(ds));
@@ -123,6 +125,11 @@ public class MappingController {
 			return null;
 		}
 		Tools tools = new Tools();
+		if (result[0]>result[result.length-1]) {
+			result = tools.reverseArray(result);
+		}
+		result =  tools.minMaxNormalization(result, a, b);
+		
 		String[] head = rows[0].split(",", 2);
 		String numberSpace= tools.doublrToString(result);
 		String psychometricSpace = head[1];

@@ -2,6 +2,8 @@ package usyd.elec5703.cs19.algorithm;
 
 import java.util.Arrays;
 
+import usyd.elec5703.cs19.utils.Tools;
+
 public class MappingTest {
 
 	public static void main(String[] args) {
@@ -14,23 +16,24 @@ public class MappingTest {
 		MappingClustering mappingClustering = new MappingClustering();
 		MappingMDS mappingMDS =  new MappingMDS();
 		MappingProjection projection =  new MappingProjection();
+		Tools tools = new Tools();
 		
 
 		result = mappingClustering.clusterKmeans(ns, 2);
 		System.out.println("------------------------------");
 		System.out.println("Cluster");
 		System.out.println("The result of Kmeans");
-		System.out.println(Arrays.toString(result));
+		System.out.println(Arrays.toString(tools.minMaxNormalization(result, 0, 8)));
 		System.out.println();
 		
 		result =  mappingClustering.clusterXmeans(ns);
 		System.out.println("The result of Xmeans");
-		System.out.println(Arrays.toString(result));
+		System.out.println(Arrays.toString(tools.minMaxNormalization(result, 0, 8)));
 		System.out.println();
 		
 		result = mappingClustering.clusterGmeans(ns);
 		System.out.println("The result of Gmeans");
-		System.out.println(Arrays.toString(result));
+		System.out.println(Arrays.toString(tools.minMaxNormalization(result, 0, 8)));
 		System.out.println();
 		
 		
@@ -45,17 +48,17 @@ public class MappingTest {
 		
 		result = mappingMDS.MDSmds(ns);
 		System.out.println("The result of MDS");
-		System.out.println(Arrays.toString(result));
+		System.out.println(Arrays.toString(tools.minMaxNormalization(result, 0, 8)));
 		System.out.println();
 		
 		result = mappingMDS.MDSisomds(ns);
 		System.out.println("The result of isomds");
-		System.out.println(Arrays.toString(result));
+		System.out.println(Arrays.toString(tools.minMaxNormalization(result, 0, 8)));
 		System.out.println();
 		
 		result = mappingMDS.MDSsammon(ns);
 		System.out.println("The result of sammon's mapping");
-		System.out.println(Arrays.toString(result));
+		System.out.println(Arrays.toString(tools.minMaxNormalization(result, 0, 8)));
 		System.out.println();
 		
 		
@@ -64,7 +67,7 @@ public class MappingTest {
 		System.out.println("Projection");
 		result = projection.projectionPCA(ns);
 		System.out.println("The result of PCA");
-		System.out.println(Arrays.toString(result));
+		System.out.println(Arrays.toString(tools.minMaxNormalization(result, 0, 8)));
 		System.out.println();
 	}
 
