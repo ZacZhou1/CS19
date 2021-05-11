@@ -68,6 +68,7 @@
 								<th scope="col">Psychometric Space</th>
 								<th scope="col">Numeric Space</th>
 								<th scope="col">Algorithm</th>
+								<th scope="col">Action</th>
 								<!-- <th scope="col">Detail</th> -->
 							</tr>
 						</thead>
@@ -80,7 +81,8 @@
 								<td>${data.psychometricSpace}</td>
 								<td>${data.numericSpace}</td>
 								<td>${data.algorithm}</td>
-								<%-- <td><a href="/cs19/storedalgorithm/${data.idString}">click</a></td> --%>
+								<td><a href="/cs19/mapping/data/${data.idString}">Detail</a></td>
+								
 							</tr>
 
 						</c:forEach>

@@ -8,11 +8,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -23,6 +26,7 @@ import usyd.elec5703.cs19.algorithm.MappingClustering;
 import usyd.elec5703.cs19.algorithm.MappingMDS;
 import usyd.elec5703.cs19.algorithm.MappingProjection;
 import usyd.elec5703.cs19.domain.Data;
+import usyd.elec5703.cs19.domain.DocumentData;
 import usyd.elec5703.cs19.utils.Tools;
 
 @Controller("mapping")
@@ -66,6 +70,40 @@ public class MappingController {
 		map.put("documentData", list);
 
 		return new ModelAndView("pagedata", "map", map);
+	}
+	
+	@RequestMapping(value = "mapping/data/{id}", method = RequestMethod.GET)
+	public ModelAndView mappingDataPredict(@PathVariable("id") String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Data> list = new ArrayList<Data>();
+		String idString ="";
+		String algorithmtype ="";
+		String psychometricSpace = "";
+		String numericSpace = "";
+		Data data = new Data();
+		try {
+
+			MongoClient mongoClient = new MongoClient("localhost", 27017);
+			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
+
+			BasicDBObject queryObject = new BasicDBObject("_id",new ObjectId(id));
+			MongoCollection<Document> collection = mongoDatabase.getCollection("Mapping");
+			FindIterable<Document> findIterable = collection.find(queryObject);
+			MongoCursor<Document> mongoCursor = findIterable.iterator();
+			while (mongoCursor.hasNext()) {
+				Document document = mongoCursor.next();
+				idString = document.get("_id").toString();
+				psychometricSpace = document.get("psychometricSpace").toString();
+				numericSpace = document.get("numberSpace").toString();
+				algorithmtype = document.get("algorithm").toString();
+				data = new Data(idString, psychometricSpace, numericSpace, algorithmtype);
+				System.out.println(idString);
+			}
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		}
+		map.put("data", data);
+		return new ModelAndView("pagepredict", "map", map);
 	}
 	
 	@RequestMapping(value = "mapping/uploadsubmit", method = RequestMethod.POST)
