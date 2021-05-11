@@ -75,7 +75,6 @@ public class MappingController {
 	@RequestMapping(value = "mapping/data/{id}", method = RequestMethod.GET)
 	public ModelAndView mappingDataPredict(@PathVariable("id") String id) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Data> list = new ArrayList<Data>();
 		String idString ="";
 		String algorithmtype ="";
 		String psychometricSpace = "";
