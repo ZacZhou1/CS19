@@ -62,7 +62,7 @@
 		</dependency>
 
 
-<!-- <dependency>
+ <dependency>
     <groupId>org.bytedeco</groupId>
     <artifactId>javacpp</artifactId>
     <version>1.5.4</version>
@@ -89,7 +89,7 @@
     <artifactId>arpack-ng-platform</artifactId>
     <version>3.7.0-1.5.4</version>
 </dependency>
- -->
+
 
 
 		<!-- Logging -->
