@@ -62,33 +62,33 @@
 		</dependency>
 
 
- <dependency>
-    <groupId>org.bytedeco</groupId>
-    <artifactId>javacpp</artifactId>
-    <version>1.5.4</version>
-</dependency>
-<dependency>
-    <groupId>org.bytedeco</groupId>
-    <artifactId>openblas</artifactId>
-    <version>0.3.10-1.5.4</version>
-</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacpp</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas</artifactId>
+			<version>0.3.10-1.5.4</version>
+		</dependency>
 
-<dependency>
-    <groupId>org.bytedeco</groupId>
-    <artifactId>openblas-platform</artifactId>
-    <version>0.3.10-1.5.4</version>
-</dependency>
-<dependency>
-    <groupId>org.bytedeco</groupId>
-    <artifactId>arpack-ng</artifactId>
-    <version>3.7.0-1.5.4</version>
-</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas-platform</artifactId>
+			<version>0.3.10-1.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>arpack-ng</artifactId>
+			<version>3.7.0-1.5.4</version>
+		</dependency>
 
-<dependency>
-    <groupId>org.bytedeco</groupId>
-    <artifactId>arpack-ng-platform</artifactId>
-    <version>3.7.0-1.5.4</version>
-</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>arpack-ng-platform</artifactId>
+			<version>3.7.0-1.5.4</version>
+		</dependency>
 
 
 
@@ -213,6 +213,26 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.9</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
