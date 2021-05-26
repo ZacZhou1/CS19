@@ -33,6 +33,9 @@ import usyd.elec5703.cs19.utils.Tools;
 
 @Controller("mapping")
 public class MappingController {
+	
+	MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+	
 	@RequestMapping(value = "mapping/guide", method = RequestMethod.GET)
 	public String mappingGuide() {
 		return "pageguide";
@@ -54,9 +57,9 @@ public class MappingController {
 		String description = "";
 		Questionnaire questionnaire = new Questionnaire();
 		try {
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 
 			BasicDBObject queryObject = new BasicDBObject("_id", new ObjectId(id));
@@ -95,8 +98,8 @@ public class MappingController {
 		
 		
 		try {
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 			MongoCollection<Document> collection = mongoDatabase.getCollection("questionnairelist");
@@ -120,8 +123,8 @@ public class MappingController {
 
 		try {
 
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 			MongoCollection<Document> collection = mongoDatabase.getCollection("questionnaire");
@@ -155,8 +158,8 @@ public class MappingController {
 
 		try {
 
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 			MongoCollection<Document> collection = mongoDatabase.getCollection("questionnaire");
@@ -192,8 +195,8 @@ public class MappingController {
 
 		try {
 
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 
@@ -238,8 +241,8 @@ public class MappingController {
 		String description = tools.arrayToString(psyArr);
 
 		try {
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 			MongoCollection<Document> collection = mongoDatabase.getCollection("questionnaire");
@@ -260,8 +263,8 @@ public class MappingController {
 
 		try {
 
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 			MongoCollection<Document> collection = mongoDatabase.getCollection("Mapping");
@@ -295,8 +298,8 @@ public class MappingController {
 		Data data = new Data();
 		try {
 
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 
@@ -389,8 +392,8 @@ public class MappingController {
 //		System.out.println(psychometricSpace);
 
 		try {
-			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 			MongoCollection<Document> collection = mongoDatabase.getCollection("Mapping");
