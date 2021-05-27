@@ -36,5 +36,11 @@ public class DataTest extends TestCase {
 		data.setAlgorithm(algorithm);
 		assertEquals(data.getAlgorithm(), algorithm);
 	}
+	
+	
+	public void testConstructer1() {
+		Data data1 = new Data("", "","");
+		Data data2 = new Data("", "","","");
+	}
 
 }

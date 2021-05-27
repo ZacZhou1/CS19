@@ -49,5 +49,11 @@ public class TestMappingMDS extends TestCase{
 		assertEquals(Arrays.toString(result), "[12.0, 4.0, 1.0, -5.0, -12.0]");
 		
 	}
+	
+	public void testMDSsammon3() {
+		double[] result = mappingMDS.MDSsammon(arrTest2);
+		assertEquals(Arrays.toString(result), "[12.0, 4.0, 1.0, -5.0, -12.0]");
+		
+	}
 
 }
