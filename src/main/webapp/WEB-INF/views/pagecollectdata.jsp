@@ -42,8 +42,24 @@
 
 		</div>
 		<br>
+
 		<div class="row">
 			<div class="col-sm-3"></div>
+
+			<div class="col-sm">
+			<form>
+				<div class="form-group">
+					<label>Name</label> 
+					<input class="form-control" id="username" placeholder="Please input your name">
+				</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-sm-3"></div>
+		<div class="row">
+
+			<div class="col-sm-3"></div>
+
 			<div class="col-sm" align="right">
 				<button onclick="submit()"
 					class="btn btn-primary waves-effect waves-light">Submit</button>
@@ -51,15 +67,9 @@
 			</div>
 			<div class="col-sm-3"></div>
 
+
+
 		</div>
-
-	</div>
-
-
-
-
-
-
 </body>
 
 
@@ -110,23 +120,24 @@
 		ticks_positions : [ 0, 100 ],
 		ticks_labels : [ minvalue, maxvalue ],
 	});
-	
-	
+
 	function submit() {
-		
-		 var psynumber = document.getElementsByName("psynumber"); 
-		 var arr_number = new Array();
-			for(var i = 0; i < psynumber.length; i++){
-				arr_number[i] = psynumber[i].value
-			}
-		
+
+		var psynumber = document.getElementsByName("psynumber");
+		var username = document.getElementById("username").value;
+		var arr_number = new Array();
+		for (var i = 0; i < psynumber.length; i++) {
+			arr_number[i] = psynumber[i].value
+		}
+
 		$.ajax({
 			type : "post",
 			url : "/cs19/mapping/collectdata/submit",
 			data : {
 				arr_description : arr_description,
 				questionnaireid : questionnaireid,
-				arr_number : arr_number
+				arr_number : arr_number,
+				username: username
 
 			},
 			success : function(msg) {
@@ -139,7 +150,6 @@
 
 		});
 	}
-
 </script>
 
 

@@ -5,6 +5,7 @@ public class QuestionnaireList {
 	String questionnaireid;
 	String descriptions;
 	String values;
+	String username;
 	public String getId() {
 		return id;
 	}
@@ -29,6 +30,14 @@ public class QuestionnaireList {
 	public void setValues(String values) {
 		this.values = values;
 	}
+	
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public QuestionnaireList(String id, String questionnaireid, String descriptions, String values) {
 		super();
 		this.id = id;
@@ -38,6 +47,17 @@ public class QuestionnaireList {
 	}
 	public QuestionnaireList() {
 		super();
+	}
+	
+	
+	
+	public QuestionnaireList(String id, String questionnaireid, String descriptions, String values, String username) {
+		super();
+		this.id = id;
+		this.questionnaireid = questionnaireid;
+		this.descriptions = descriptions;
+		this.values = values;
+		this.username = username;
 	}
 	@Override
 	public String toString() {

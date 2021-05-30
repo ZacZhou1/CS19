@@ -117,6 +117,7 @@ table th, table td {
 							var cells = rows[i].split(",");
 							for (var j = 0; j < cells.length; j++) {
 								var cell = $("<td />");
+								cells[j] = cells[j].replaceAll("\"","");
 								cell.html(cells[j]);
 								row.append(cell);
 							}

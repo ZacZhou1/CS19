@@ -40,6 +40,12 @@ public class MappingController {
 	public String mappingGuide() {
 		return "pageguide";
 	}
+	
+	
+	@RequestMapping(value = "mapping/test", method = RequestMethod.GET)
+	public String mappingtest() {
+		return "pagetest";
+	}
 
 	@RequestMapping(value = "mapping/upload", method = RequestMethod.GET)
 	public String mappingUpload() {
@@ -88,6 +94,7 @@ public class MappingController {
 		
 		String[] arr_description = request.getParameterValues("arr_description[]");
 		String questionnaireid = request.getParameter("questionnaireid");
+		String username = request.getParameter("username");
 		String[] arr_number = request.getParameterValues("arr_number[]");
 		Tools tools =  new Tools();
 		
@@ -104,7 +111,7 @@ public class MappingController {
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
 			MongoCollection<Document> collection = mongoDatabase.getCollection("questionnairelist");
 			Document document = new Document("questionnaireid", questionnaireid).append("descriptions", descriptions)
-					.append("values", values);
+					.append("values", values).append("username", username);
 			collection.insertOne(document);
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -192,7 +199,7 @@ public class MappingController {
 	public ModelAndView mappingQueryData(@PathVariable("id") String id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<QuestionnaireList> list = new ArrayList<QuestionnaireList>();
-
+		String tablehead = "";
 		try {
 
 //			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
@@ -204,14 +211,17 @@ public class MappingController {
 			MongoCollection<Document> collection = mongoDatabase.getCollection("questionnairelist");
 			FindIterable<Document> findIterable = collection.find(new Document("questionnaireid",id));
 			MongoCursor<Document> mongoCursor = findIterable.iterator();
+			
 			while (mongoCursor.hasNext()) {
 				Document document = mongoCursor.next();
 				String idid = document.get("_id").toString();
 				String questionnaireid = document.get("questionnaireid").toString();
 				String descriptions = document.get("descriptions").toString();
 				String values = document.get("values").toString();
-				QuestionnaireList questionnaireList =  new QuestionnaireList(idid, questionnaireid, descriptions, values);
-				System.out.println(questionnaireList.toString());
+				String username = document.get("username").toString();
+				tablehead = descriptions;
+				QuestionnaireList questionnaireList =  new QuestionnaireList(idid, questionnaireid, descriptions, values,username);
+//				System.out.println(questionnaireList.toString());
 				list.add(questionnaireList);
 			}
 
@@ -220,7 +230,95 @@ public class MappingController {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
 		map.put("documentData", list);
+		map.put("tablehead", tablehead);
+		map.put("questionnaireid", id);
 		return new ModelAndView("pagequestionnairelistdetail", "map", map);
+	}
+	
+	
+	@RequestMapping(value = "mapping/questionnaire/data/submit", method = RequestMethod.POST)
+	public ModelAndView mappingQuestionnaireDataSubmit(HttpServletRequest request) {
+		String csv = request.getParameter("csvData").replace("\r", "");
+		csv = csv.replaceAll("\"", "");
+		String algorithm = request.getParameter("algorithm");
+
+		String[] rows = csv.split("\n");
+		String[] cols = rows[0].split(",");
+
+		double[][] arr = new double[rows.length - 1][cols.length - 1];
+		for (int i = 1; i < rows.length; i++) {
+			String[] colData = rows[i].split(",");
+
+			for (int j = 1; j < colData.length; j++) {
+				try {
+					arr[i - 1][j - 1] = Double.parseDouble(colData[j]);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		double sumA = 0;
+		double sumB = 0;
+		for (int i = 0; i < rows.length - 1; i++) {
+			sumA += arr[i][0];
+			sumB += arr[i][cols.length - 2];
+		}
+
+		double a = sumA / (rows.length - 1);
+		double b = sumB / (rows.length - 1);
+
+//		for (double[] ds : arr) {
+//			System.out.println(Arrays.toString(ds));
+//		}
+		double[] result = null;
+		MappingClustering mappingClustering = new MappingClustering();
+		MappingMDS mappingMDS = new MappingMDS();
+		MappingProjection projection = new MappingProjection();
+		if (algorithm.equals("kmeans")) {
+			result = mappingClustering.clusterKmeans(arr, 2);
+		} else if (algorithm.equals("xmeans")) {
+			result = mappingClustering.clusterXmeans(arr);
+		} else if (algorithm.equals("gmeans")) {
+			result = mappingClustering.clusterGmeans(arr);
+		} else if (algorithm.equals("mds")) {
+			result = mappingMDS.MDSmds(arr);
+		} else if (algorithm.equals("isomds")) {
+			result = mappingMDS.MDSisomds(arr);
+		} else if (algorithm.equals("sammon")) {
+			result = mappingMDS.MDSsammon(arr);
+		} else if (algorithm.equals("pca")) {
+			result = projection.projectionPCA(arr);
+		} else {
+			return null;
+		}
+		Tools tools = new Tools();
+		if (result[0] > result[result.length - 1]) {
+			result = tools.reverseArray(result);
+		}
+		result = tools.minMaxNormalization(result, a, b);
+
+		String[] head = rows[0].split(",", 2);
+		String numberSpace = tools.doublrToString(result);
+		String psychometricSpace = head[1];
+//		System.out.println(numberSpace);
+//		System.out.println(psychometricSpace);
+
+		try {
+//			com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+//					"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+
+			MongoDatabase mongoDatabase = mongoClient.getDatabase("mycol");
+			MongoCollection<Document> collection = mongoDatabase.getCollection("Mapping");
+			Document document = new Document("numberSpace", numberSpace).append("psychometricSpace", psychometricSpace)
+					.append("algorithm", algorithm);
+			collection.insertOne(document);
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		}
+		return null;
+	
+
 	}
 	
 	
@@ -314,7 +412,7 @@ public class MappingController {
 				numericSpace = document.get("numberSpace").toString();
 				algorithmtype = document.get("algorithm").toString();
 				data = new Data(idString, psychometricSpace, numericSpace, algorithmtype);
-				System.out.println(idString);
+//				System.out.println(idString);
 			}
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -327,6 +425,7 @@ public class MappingController {
 	public String mappingUploadSubmit(HttpServletRequest request) {
 
 		String csv = request.getParameter("csv").replace("\r", "");
+		csv = csv.replaceAll("\"", "");
 		String algorithm = request.getParameter("algorithm");
 
 		String[] rows = csv.split("\n");
