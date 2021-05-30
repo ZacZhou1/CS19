@@ -36,16 +36,7 @@ public class MappingController {
 	
 	MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 	
-	@RequestMapping(value = "mapping/guide", method = RequestMethod.GET)
-	public String mappingGuide() {
-		return "pageguide";
-	}
 	
-	
-	@RequestMapping(value = "mapping/test", method = RequestMethod.GET)
-	public String mappingtest() {
-		return "pagetest";
-	}
 
 	@RequestMapping(value = "mapping/upload", method = RequestMethod.GET)
 	public String mappingUpload() {
