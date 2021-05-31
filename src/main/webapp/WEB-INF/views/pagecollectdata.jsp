@@ -70,6 +70,7 @@
 
 
 		</div>
+		</div>
 </body>
 
 
@@ -91,21 +92,16 @@
 	var descriptionnumber = "${map.questionnaire.descriptionnumber}";
 	var descriptions = "${map.questionnaire.descriptions}";
 	var arr_description = descriptions.split(",");
-
 	var box = document.getElementById('box');
 	for (var i = 0; i < descriptionnumber; i++) {
-
 		var labeldescription = document.createElement('label');
-
 		var br = document.createElement('br');
 		var inputdescription = document.createElement('input');
-
 		labeldescription.innerText = arr_description[i];
 		labeldescription.name = 'psylabel';
 		inputdescription.name = 'psynumber';
 		inputdescription.type = 'range';
 		inputdescription.style = 'width: 100%';
-
 		box.appendChild(labeldescription);
 		box.appendChild(br);
 		box.appendChild(inputdescription);
@@ -120,16 +116,13 @@
 		ticks_positions : [ 0, 100 ],
 		ticks_labels : [ minvalue, maxvalue ],
 	});
-
 	function submit() {
-
 		var psynumber = document.getElementsByName("psynumber");
 		var username = document.getElementById("username").value;
 		var arr_number = new Array();
 		for (var i = 0; i < psynumber.length; i++) {
 			arr_number[i] = psynumber[i].value
 		}
-
 		$.ajax({
 			type : "post",
 			url : "/cs19/mapping/collectdata/submit",
@@ -138,7 +131,6 @@
 				questionnaireid : questionnaireid,
 				arr_number : arr_number,
 				username: username
-
 			},
 			success : function(msg) {
 				alert("success");
@@ -147,7 +139,6 @@
 			error : function(msg) {
 				alert("fail");
 			}
-
 		});
 	}
 </script>
@@ -155,5 +146,3 @@
 
 
 </html>
-
-

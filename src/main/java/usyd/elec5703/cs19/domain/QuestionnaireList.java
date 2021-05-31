@@ -30,14 +30,6 @@ public class QuestionnaireList {
 	public void setValues(String values) {
 		this.values = values;
 	}
-	
-	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	public QuestionnaireList(String id, String questionnaireid, String descriptions, String values) {
 		super();
 		this.id = id;
@@ -45,11 +37,6 @@ public class QuestionnaireList {
 		this.descriptions = descriptions;
 		this.values = values;
 	}
-	public QuestionnaireList() {
-		super();
-	}
-	
-	
 	
 	public QuestionnaireList(String id, String questionnaireid, String descriptions, String values, String username) {
 		super();
@@ -58,6 +45,15 @@ public class QuestionnaireList {
 		this.descriptions = descriptions;
 		this.values = values;
 		this.username = username;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public QuestionnaireList() {
+		super();
 	}
 	@Override
 	public String toString() {

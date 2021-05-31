@@ -31,8 +31,6 @@
 			href="/cs19/mapping/upload">Upload</a></li>
 		<li class="nav-item"><a class="nav-link"
 			href="/cs19/mapping/data">Projection</a></li>
-			<li class="nav-item"><a class="nav-link"
-			href="/cs19/mapping/questionnaire">Questionnaire List</a></li>
 	</ul>
 	<br>
 	<br>

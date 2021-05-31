@@ -103,20 +103,13 @@
 <script src="${pageContext.request.contextPath }/asset/csv/tableexport.js"></script>
 
 <script type="text/javascript">
-
 var questionnaireid ="${map.questionnaireid}" ;
-
 var table = TableExport(document.getElementsByTagName("table"), {
 	  formats: ["csv"],
 	  filename: questionnaireid
 	});
-
 var exportData = table.getExportData();;
-
-
 var csvData = exportData.basicdatatable.csv.data;
-
-
 	
 	
 function submit() {
@@ -135,7 +128,6 @@ function submit() {
 		error : function(msg) {
 			alert("fail");
 		}
-
 	});
 }
 	

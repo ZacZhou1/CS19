@@ -34,9 +34,11 @@ import usyd.elec5703.cs19.utils.Tools;
 @Controller("mapping")
 public class MappingController {
 	
-	MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+//	MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 	
-	
+	com.mongodb.client.MongoClient mongoClient = MongoClients.create(
+	"mongodb+srv://hao:c1SkRR0inlNhjqWF@cluster0.ap9gn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+
 
 	@RequestMapping(value = "mapping/upload", method = RequestMethod.GET)
 	public String mappingUpload() {
