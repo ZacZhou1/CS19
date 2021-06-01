@@ -27,8 +27,8 @@
 
 <body>
 
-	<h1 class="display-4" align="center">Psychometric Mapping Tool</h1>
-
+	<h1 class="display-4" align="center">Psychometric Survey</h1>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-3"></div>
@@ -36,16 +36,13 @@
 				<form>
 					<div id="box" class="form-group"></div>
 				</form>
-
 			</div>
 			<div class="col-sm-3"></div>
-
 		</div>
 		<br>
-
+		
 		<div class="row">
 			<div class="col-sm-3"></div>
-
 			<div class="col-sm">
 			<form>
 				<div class="form-group">
@@ -54,23 +51,19 @@
 				</div>
 				</form>
 			</div>
-		</div>
-		<div class="col-sm-3"></div>
-		<div class="row">
-
 			<div class="col-sm-3"></div>
-
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-3"></div>
 			<div class="col-sm" align="right">
-				<button onclick="submit()"
-					class="btn btn-primary waves-effect waves-light">Submit</button>
-
+				<a type="button" class="btn btn-secondary" href="/cs19/mapping/collectdata/list">Back</a>
+				<button onclick="submit()" class="btn btn-primary">Submit</button>
 			</div>
 			<div class="col-sm-3"></div>
-
-
-
 		</div>
-		</div>
+		
+	</div>
 </body>
 
 

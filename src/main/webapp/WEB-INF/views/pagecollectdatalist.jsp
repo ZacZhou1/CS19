@@ -24,51 +24,39 @@
 
 <body>
 
-	<h1 class="display-4" align="center">Psychometric Mapping Tool</h1>
-
-	<div class="container">
-			<table id="basic-datatable" class="table dt-responsive nowrap">
-						<thead>
-							<tr>
-
-								<th scope="col">Theme</th>
-								<th scope="col">Range</th>
-								<th scope="col">Description</th>
-								<th scope="col">Detail</th> 
-							</tr>
-						</thead>
-
-
-						<c:forEach items="${map.documentData }" var="data">
-
-							<tr>
-
-								<td>${data.theme}</td>
-								<td>${data.minvalue} - ${data.maxvalue}</td>
-								<td>${data.descriptions}</td>
-								<td><a href="/cs19/mapping/collectdata/${data.id}">Detail</a></td> 
-								
-							</tr>
-
-						</c:forEach>
-					</table>
+	<h1 class="display-4" align="center">Psychometric Survey</h1>
+		<div class="container">
+	  		<div class="row"> 
+			    <img src="${pageContext.request.contextPath }/asset/image/mentalwellbeing.jpg" class="d-block w-100" alt="...">
+  			</div>
+		</div>
 		<br>
 
-
-	</div>
-
-
-
-
-
-
+		<div class="container">
+			<table id="basic-datatable" class="table dt-responsive nowrap">
+				<thead>
+					<tr>
+						<th scope="col">Theme</th>
+						<th scope="col">Range</th>
+						<th scope="col">Description</th>
+						<th scope="col">Detail</th> 
+					</tr>
+				</thead>
+				<c:forEach items="${map.documentData }" var="data">
+					<tr>
+						<td>${data.theme}</td>
+						<td>${data.minvalue} - ${data.maxvalue}</td>
+						<td>${data.descriptions}</td>
+						<td><a href="/cs19/mapping/collectdata/${data.id}">Detail</a></td> 
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
 </body>
-
 
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/asset/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath }/asset/js/bootstrap.min.js"></script>
-
 
 <!-- Vendor js -->
 <script src="${pageContext.request.contextPath }/asset/assets/js/vendor.min.js"></script>
@@ -94,13 +82,6 @@
 
 <!-- App js-->
 <script src="${pageContext.request.contextPath }/asset/assets/js/app.min.js"></script>
-
-<script>
-
-
-</script>
-
-
 
 </html>
 
